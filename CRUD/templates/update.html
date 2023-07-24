@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1 align="center">This is it</h1>
+<div class="row justify-content-start">
+<div class="col-4" >
+<form action="/update/{{ u.id }}" method="POST">
+    {% csrf_token %}
+    <div class="md-3">
+        <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Name" name="name" value="{{ u.name }}" required>
+    </div>
+    <div class="md-3">
+        <label for="School">School</label>
+        <input type="text" id="School" class="form-control" placeholder="School" name="school" value="{{ u.school }}">
+    </div>
+    <div class="md-3">
+         <label for="email">Email</label>
+             <input type="email" class="form-control" id="email" placeholder="Email" name="email" value="{{ u.email }}">
+    </div>
+    <div class="md-3">
+        <button type="submit" name="submit">Submit</button>
+    </div>
+    </form>
+</div>
+<div class="col-8">
+    <table class="table table-success table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>School</th>
+        <th>Email</th>
+    </tr>
+
+    {% for d in data %}
+
+    <tr>
+        <td>{{ d.id }}</td>
+        <td>{{ d.name }}</td>
+        <td>{{ d.school }}</td>
+        <td>{{ d.email }}</td>
+        <td>
+            <a href="/update/{{ d.id }}"><button>Edit</button></a>
+        </td>
+        <td>
+            <a href="/delete/{{ d.id }}"><button>Delete</button></a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
